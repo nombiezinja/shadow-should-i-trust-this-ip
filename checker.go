@@ -12,7 +12,10 @@ import (
 // of IPs in https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=BizTech&title=Salesforce+Public+IP%27s+-+Corp+IT
 // However, it is not possible to do both as that will result in an empty allowlist.
 func New(ipList *IPList, cidrRanges *CIDRRangeList, opts *Options) (*Checker, error) {
-	if opts.ExcludeSFDCCanonicalList == true && len(ipList.IPs) == 0 && len(cidrRanges.Ranges) == 0 {
+	// This check is a bit silly to enable the ability to either pass empty slices or nils
+	// for the additional lists.
+	additionalListIsEmpty := (ipList == nil && cidrRanges == nil) || (len(ipList.IPs) == 0 && len(cidrRanges.Ranges) == 0)
+	if opts.ExcludeSFDCCanonicalList == true && additionalListIsEmpty {
 		return nil, errors.New(ErrMsgEmptyAllowlist)
 	}
 
