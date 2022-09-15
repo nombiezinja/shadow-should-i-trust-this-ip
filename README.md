@@ -4,4 +4,4 @@ This package takes the canonical list of internal VPN IPs to be allowlisted in a
 
 ## Next steps 
 
-Allow passing additional IPs. 
+Allow passing additional IPs and CIDR ranges. 

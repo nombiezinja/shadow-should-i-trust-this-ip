@@ -2,6 +2,7 @@ package ipchecker
 
 import "net"
 
+// List pulled from https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=BizTech&title=Salesforce+Public+IP%27s+-+Corp+IT
 var TRUSTED_IPS = []string{
 	"50.112.137.68",
 	"52.33.243.73",
